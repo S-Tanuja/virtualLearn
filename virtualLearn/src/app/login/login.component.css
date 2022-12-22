@@ -1,0 +1,229 @@
+.body {
+    width: 100%;
+    height: 100%;
+    margin: auto;
+    overflow: hidden;
+}
+
+.container {
+    width: 80%;
+    height: 700px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    margin: auto;
+    margin-top: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    position: relative;
+}
+
+.content-left {
+    height: 100%;
+    width: 65%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+}
+
+.ad {
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.ad>img {
+    height: 60%;
+    width: 52%;
+}
+
+.content {
+    position: relative;
+    top: 20px;
+}
+
+.p1 {
+    top: calc(50% - 35px/2 + 115.5px);
+    font-family: 'Rubik';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 35px;
+    text-align: center;
+    color: #2B2B2B;
+    letter-spacing: 1px;
+}
+
+.content2 {
+    display: flex;
+    align-items: center;
+    width: 60%;
+    position: relative;
+    top: 30px;
+}
+
+.content2>p {
+    top: calc(50% - 79px/2 + 202.5px);
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 28px;
+    text-align: center;
+    color: #7A7A7A;
+}
+
+.p2 {
+    position: relative;
+    top: 50px;
+    font-size: 50px;
+    color: #7A7A7A;
+}
+
+.content-right {
+    height: 100%;
+    width: 35%;
+    background-color: #092963;
+    position: relative;
+
+}
+
+.image {
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 15px;
+}
+
+.image>.img1 {
+    height: 75%;
+    width: 30%;
+}
+
+.greeting {
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 30px;
+}
+
+.p3 {
+    top: calc(50% - 35px/2 - 187.5px);
+    font-family: 'Rubik';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 28px;
+    line-height: 35px;
+    text-align: center;
+    color: #FFFFFF;
+    letter-spacing: 1px;
+
+}
+
+.p4 {
+    width: 300px;
+    font-family: 'Rubik';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 26px;
+    text-align: center;
+    color: #FFFFFF;
+    opacity: 0.6;
+}
+
+.media {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.media>button {
+    width: 32%;
+    height: 38px;
+    font-size: 20px;
+    border: none;
+    background-color: #fff;
+    border-radius: 3px;
+    margin: 12px;
+}
+
+.input {
+    width: 300px;
+    margin: auto;
+    padding-top: 10px;
+    ;
+}
+
+.input>.mat-form-field {
+    width: 100%;
+    color: #fff;
+    font-size: 16px;
+}
+::ng-deep .mat-focused .mat-form-field-label, ::ng-deep .mat-form-field-label {
+    opacity: 0.5;
+    color: white !important;
+}
+
+::ng-deep .mat-form-field-underline, ::ng-deep .mat-focused .mat-form-field-ripple {
+    opacity: 0.5;
+    background-color: rgb(243, 242, 242) !important;
+}
+
+.userForm {
+    width: 100%;
+    height: 210px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.userForm>.btn {
+    height: 45px;
+    width: 69%;
+    border: none;
+    border-radius: 3px;
+    background-color: #EE5C4D;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    letter-spacing: 1px;
+    position: relative;
+    top: 35px;
+}
+.userForm>.btn:hover{
+    background-color: #ec8175;
+}
+.Btn:hover{
+    transform: scale(1.05)
+}
+
+.p5 {
+    margin-top: 40px;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 24px;
+
+    text-align: center;
+ position: relative;
+    color: #FFFFFF;
+
+}span{
+    color:#EE5C4D;
+    cursor: pointer;
+}
+.error{
+    color: red;
+    position: relative;
+    bottom: 10px;
+}
+.media img{
+    width: 230px;
+}
+

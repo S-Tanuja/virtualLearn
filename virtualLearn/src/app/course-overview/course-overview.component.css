@@ -1,0 +1,321 @@
+.main {
+    display: flex;
+    gap: 2rem;
+}
+
+.submain {
+    width: 70%;
+}
+
+.myCourse {
+    color: #2BB5F4;
+    font-family: 'Biko';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+    margin: 0% 10% 0% 10%;
+    padding: 20px 0px;
+}
+
+.showVideo {
+    width: 100%;
+    height: 400px;
+    background-color: black;
+}
+
+.designbtn button {
+    background-color: #FCBE4B;
+    color: black;
+    border: none;
+    padding: 5px 15px;
+    border-radius: 5px;
+}
+
+.videoDetails {
+    margin-top: 3%;
+    /* width: 70%; */
+    display: flex;
+    justify-content: space-between;
+}
+
+.courseName,
+.courseChapters {
+    font-weight: 700;
+    font-size: 15px;
+}
+
+.courseChapters {
+    font-weight: 500;
+}
+
+.bluetxt {
+    color: #2BB5F4;
+    font-size: 10px;
+    /* width: 70%; */
+}
+
+.videoInfo {
+    /* width: 70%; */
+    line-height: 20px;
+    font-size: 12px;
+}
+
+.showmore {
+    color: #EE5C4D;
+}
+
+.routeKeys {
+    display: flex;
+    color: #7A7A7A;
+    font-weight: 400;
+    gap: 1rem;
+    line-height: 50px;
+}
+
+.courseIncludes {
+    font-family: 'Proxima Nova Soft';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 13px;
+}
+
+.icon img {
+    background-color: #2BB5F4;
+    height: 16px;
+    /* padding: 5px; */
+}
+
+.sideContent {
+    display: flex;
+    gap: 1rem;
+}
+
+.iconInfo {
+    color: #7A7A7A;
+    font-weight: 500;
+    font-size: 12px;
+}
+
+.learn,
+.requirements,
+.courseIncludes,
+.instructor {
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 30px;
+}
+
+.tick {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.tick img {
+    height: 20px;
+}
+
+.tickContent {
+    font-weight: 400;
+    font-size: 12px;
+}
+
+.sidebar {
+    width: 25%;
+}
+
+.requirementsList {
+    font-weight: 400;
+    font-size: 12px;
+}
+
+ul {
+    margin: 0;
+    padding: 10px;
+}
+
+.inst-name,
+.instInfo,
+.join,
+.requirementsList,
+.tickContent,
+.learn,
+.requirements,
+.courseIncludes,
+.courseName,
+.courseChapters,
+.instructor,
+.iconInfo,
+.routeKeys {
+    font-family: 'Proxima Nova Soft';
+    font-style: normal;
+    /* font-size: 12px; */
+}
+
+.profile {
+    display: flex;
+    gap: 1rem;
+}
+
+.profile img {
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+}
+
+.inst-desig {
+    font-size: 10px;
+    font-weight: 400;
+}
+
+.inst-name {
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.instInfo {
+    font-size: 12px;
+}
+
+.join {
+    background-color: #EC5D52;
+    color: white;
+    text-align: center;
+    margin-top: 5%;
+    padding: 10px;
+    font-weight: 550;
+}
+
+.courseContent {
+    font-family: 'Proxima Nova Soft';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 1.3rem;
+    line-height: 30px;
+}
+.courseInfo{
+    font-family: 'Proxima Nova Soft';
+    font-style: normal;
+    font-weight: 530;
+    font-size: 1.1rem;
+    line-height: 20px;
+} 
+.chap{
+    display: flex;
+    justify-content: space-between;
+}
+.chapName{
+    font-family: 'Proxima Nova Soft';
+    font-style: normal;
+    font-size: 1.2rem;
+    font-weight: 550;
+    line-height: 30px;
+}
+.addIcon mat-icon{
+    color: #EC5D52;
+    font-size: 18px;
+    align-self: center;
+}
+
+
+
+.video{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 5%;
+}
+.vIcon mat-icon{
+    color:  #EC5D52;
+    padding-top: 5px;
+}
+.vIcon{
+    text-align: center;
+}
+.videoNumber{
+    font-size: 124x;
+    font-weight: 600;
+    /* color: #7A7A7A; */
+}
+.videoNumber img{
+    width: 20px;
+}
+.videoTime{
+    font-size: 10px;
+    font-weight: 500;
+    color: #7A7A7A;
+    line-height: 30px;
+}
+
+.chk mat-icon{
+    color: green;
+    font-size: 17px;
+    align-self: center;
+    padding-top: 5px;
+}
+.dot mat-icon{
+    /* color: green; */
+    color: #a09393;
+    font-size: 18px;
+    align-self: center;
+    padding-top: 5px;
+
+}
+
+.testResult{
+    display: flex;
+    justify-content: space-between;
+    background-color: #092963;
+    color: white;
+    margin-bottom: 5%;
+    padding: 2%;
+    margin-top: 3%;
+}
+p{
+    margin: 0;
+    padding: 0;
+}
+.course_result{
+    font-size: 12px;
+    font-weight: 500;
+}
+.percentage{
+    color: #1EAB0D;
+    font-size: 25px;
+    font-weight: 500;
+}
+.appRate{
+    font-size: 11px;
+    font-weight: 480;
+}
+.details{
+    display: flex;
+    justify-content: space-around;
+    gap:1rem;
+    background-color: white;
+    align-items: center;
+    text-align: center;
+    padding: 2%;
+    border-radius: 5px;
+    width: 35%;
+}
+.joined{
+    color: black;
+    font-size: 10px;
+    font-weight: 400;
+}
+.date{
+    color:#2BB5F4;
+    font-size: 10px;
+    font-weight: 400;
+}
+.percent{
+    color: green;
+    font-size: 20px;
+}
+.pSym{
+    font-size: 12px;
+}
+
+
+

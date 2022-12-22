@@ -1,0 +1,36 @@
+.hurray{
+    /* width: 50%;
+    margin: auto; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 5%;
+}
+.hurray img{
+    width:500px;
+}
+.congratulations{
+    font-size: 30px;
+    font-weight: 500;
+    display: flex;
+    justify-content: center;
+    margin-top: 5%;
+}
+.congtxt{
+    font-size: 15px;
+    font-weight: 400;
+    color:#7A7A7A;
+    margin: auto;
+    width: 40%;
+    text-align: center;
+    margin-top: 2%;
+}
+.result{
+    display: flex;
+    justify-content: center;
+    color: #EE5C4D;
+    font-weight: 500;
+    font-size: 12px;
+    margin-top: 2.7%;
+
+}

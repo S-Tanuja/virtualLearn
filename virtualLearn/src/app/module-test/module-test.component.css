@@ -1,0 +1,110 @@
+.myCourse {
+    color: #2BB5F4;
+    font-family: 'Biko';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+    padding: 20px 0px;
+    cursor: pointer;
+}
+.submain{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.close mat-icon{
+    font-size: 15px;
+    color: black;
+}
+.submain1{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 10px;
+}
+.questionsComplete{
+    color:#7A7A7A;
+    font-size: 12px;
+    font-weight: 500;
+}
+.remainingTime{
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+.remTime{
+    font-size: 12px;
+    font-weight: 500;
+    padding-bottom: 5px;
+    color: #2BB5F4;
+}
+.question{
+    font-size: 15px;
+    font-weight: 500;
+    padding: 15px 0px;
+}
+.choice{
+    display: flex;
+    align-items: center;
+    text-align: center;
+    width: 70%;
+    height: 3.5rem;
+    border: 1px solid #F0F0F0;
+    margin-bottom: 2%;
+    gap: 0.5rem;
+
+}
+.selectedChoice{
+    display: flex;
+    align-items: center;
+    text-align: center;
+    width: 70%;
+    line-height: 24px;
+    height: 5.5rem;
+    border: 1px solid #F0F0F0;
+    margin-bottom: 2%;
+    color: white;
+    background-color: #EC5D52;
+}
+.selectedchoiceIcon mat-icon{
+    color: white;
+    font-size: 15px;
+    padding-top: 8px;
+}
+.choiceIcon mat-icon{
+    font-size: 15px;
+    color:#7A7A7A ;
+    padding-top: 8px;
+}
+.choiceContent{
+    font-size: 14px;
+}
+.navigateToChapter{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    border-radius: 5px;
+    background-color: #2BB5F4;
+    color: white;
+    width: 30%;
+    height: 6rem;
+    line-height: 24px;
+    margin: auto;
+    margin-top: 5%;
+}
+.navigateChapter{
+    font-size: 12px;
+
+}
+p{
+    margin: 0;
+    padding: 0;
+}
+.submitbtn button{
+    background-color: #EC5D52;
+    border: none;
+    color: white;
+    margin-right: 10%;
+    padding: 5px 10px;
+}
+

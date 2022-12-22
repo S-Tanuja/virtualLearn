@@ -1,0 +1,66 @@
+.heading{
+    padding-top: 30%;
+    padding-bottom: 2%;
+    display: flex;
+    justify-content: space-between;
+    color: white;
+}
+.bg{
+    background-color: black;
+    height: 100%;
+    width: 100%;
+}
+.certificate{
+    font-size: 20px;
+    font-weight: 500;
+}
+.container{
+    background-color: white;
+    width: 45%;
+    height: 250px;
+    margin: auto;
+    padding: 1.5%;
+}
+.main{
+    margin: 0% 26% 0% 26% !important;
+}
+.certOfComp{
+    color:grey;
+    font-size: 13.5px;
+    font-weight: 500;
+    margin-top: 5%;
+}
+.pName{
+    font-size: 22px;
+    font-weight: 500;
+    color: #EE5C4D ;
+    margin-top: 2%;
+}
+.courseName{
+    font-size: 20px;
+    font-weight: 450;
+    margin-top: 4%;
+}
+.details , .certificateNo{
+    color: rgb(145, 139, 139);
+    font-size: 10px;
+    margin-top: 8%;
+}
+.footer{
+    width: 48%;
+    height: 5rem;
+    margin: auto;
+    background-color: #092963;
+}
+.footer img{
+    width: 150px;
+    padding-top: 2%;
+    padding-left: 2%;
+}
+#trophy{
+    width: 15.0rem;
+}
+.flexing{
+    display: flex;
+    justify-content: space-between;
+}
