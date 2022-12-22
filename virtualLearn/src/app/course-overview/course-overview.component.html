@@ -4,12 +4,12 @@
     <div class="submain">
 
         <div class="showVideo">
-            <img src="" alt="">
+            <video src="{{courseOV.previewVideo}}" type="video/mp4" alt=""></video>
         </div>
         <div class="videoDetails">
             <div>
-                <p class="courseName">Learn Figma-UX/UI Designing Essential Training</p>
-                <p class="courseChapters">7 Chapters | 46 lessons</p>
+                <p class="courseName">{{courseOV.courseName}}</p>
+                <p class="courseChapters">{{courseOV.chapterCount}} Chapters | {{ courseOV.lessonCount}} lessons</p>
             </div>
             <div class="designbtn">
                 <button>Design</button>
@@ -17,21 +17,12 @@
         </div>
 
         <p class="bluetxt">
-            Learn how to design a beautiful and engaging mobile app with Figma. Learn-by-doing approach.
-            Learn how to design a beautiful and engaging mobile app with Figma. Learn-by-doing approach.
+           {{courseOV.courseTagLine}}
         </p>
         <p class="videoInfo">
-            Figma is a very powerful application that runs online.
-            There are virtually no platform boundaries when it comes to using figma because you can design within a web
-            browser or using their desktop application made for windows and macs.
-            Figma is similar to Sketch and Adobe XD but is the more powerful of the three when it comes.
-            Figma is a very powerful application that runs online. There are virtually no platform boundaries when it
-            comes
-            to using figma because you can design within a web browser or using their desktop application made for
-            windows
-            and macs...<span class="showmore">SHOW MORE</span>
+          {{courseOV.description}}<span class="showmore">SHOW MORE</span>
         </p>
-        <div class="testResult">
+        <!-- <div class="testResult">
             <div class="result">
                 <p class="course_result">Course Result</p>
                 <p class="percentage">90%</p>
@@ -56,7 +47,7 @@
             <div class="certificateMain">
                <img src="/assets/Group 118.png" alt="">
             </div>
-        </div>
+        </div> -->
 
        
 
@@ -68,13 +59,13 @@
             <p>Chapters</p>
         </div>
 
-        <!--    <p class="courseIncludes">Course Includes</p>
+         <p class="courseIncludes">Course Includes</p>
         <div>
             <div class="icon" class="sideContent">
                 <img src="/assets/clock.png" alt="">
             </div>
             <div class="iconInfo">
-                <p>3.5 hrs video</p>
+                <p>3.5 total hrs</p>
             </div>
         </div>
 
@@ -123,20 +114,13 @@
             </div>
 
         </div>
-        <p class="learn">What you'll learn</p>
+        <p class="learn" *ngFor="let learn of courseOV.learningOutconme">What you'll learn</p>
         <div class="tick">
-            <img src="/assets/Combined-Shape.png" alt="">
-            <div class="tickContent">Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                Lorem ipsum dolor, sit amet consectetur adipisicing elit
+            <img src="/assets/Combined-Shape.png" alt="">{{courseOV.learningOutconme.learn}}
+            <div class="tickContent">
             </div>
         </div>
-        <div class="tick">
-            <img src="/assets/Combined-Shape.png" alt="">
-            <div class="tickContent">Design Website
-            </div>
-        </div>
-
-        <div class="tick">
+        <!-- <div class="tick">
             <img src="/assets/Combined-Shape.png" alt="">
             <div class="tickContent">Design Website
             </div>
@@ -147,6 +131,12 @@
             <div class="tickContent">Design Website
             </div>
         </div>
+
+        <div class="tick">
+            <img src="/assets/Combined-Shape.png" alt="">
+            <div class="tickContent">Design Website
+            </div>
+        </div> -->
         <div class="requirements">Requirements</div>
         <ul class="requirementsList">
             <li>Internet Access </li>
@@ -156,23 +146,21 @@
         <div class="profile">
             <img src="/assets/profile.jpeg" alt="">
             <div>
-                <div class="inst-name">John Doe</div>
-                <div class="inst-desig">Senior Executive</div>
+                <div class="inst-name">{{courseOV.instructorName}}</div>
+                <div class="inst-desig">{{courseOV.instructorDesignation}}</div>
             </div>
         </div>
         <div class="instInfo">
-            Back in 2010, I started brainspin with a desire to design compelling and engaging apps. 
-            For over 7 years, I have designed many high profile web and iPhone applications. 
-            The applications range from 3D medical aided web applications to project management applications for niche industries. I am also the founder of a large local design organization, Salt Lake Designers, where I and other local influencers help cultivate the talents of up and coming UX designers through workshops and panel discussions...<span class="showmore">SHOW MORE</span>
+           {{courseOV.instructorDescription}}...<span class="showmore">SHOW MORE</span>
         </div>
         <div class="join">
             JOIN COURSE
         </div>
-    </div>  -->
+    </div>  
+<div>
 
 
-
-        <div class="sidebarChapters">
+        <!--<div class="sidebarChapters" >
             <p class="courseContent">Course Content</p>
             <p class="courseInfo"> 7 Chapter | 46 lessons | 6 Assignment Test | 3.5h total length </p>
             <div class="chap">
@@ -201,7 +189,7 @@
                 <div class="chk">
                     <mat-icon>check_circle</mat-icon>
                 </div>
-                <!-- <div class="dot"><mat-icon>radio_button_checked</mat-icon> -->
+                <div class="dot"><mat-icon>radio_button_checked</mat-icon> 
 
 
                 <div class="videoNumber">20</div>
@@ -215,7 +203,7 @@
             </div>
 
             <div class="video">
-                <!-- <div class="chk"><mat-icon>check_circle</mat-icon></div> -->
+                <div class="chk"><mat-icon>check_circle</mat-icon></div>
                 <div class="dot">
                     <mat-icon>radio_button_checked</mat-icon>
                 </div>
@@ -235,7 +223,7 @@
                 <div class="chk">
                     <mat-icon>check_circle</mat-icon>
                 </div>
-                <!-- <div class="dot"><mat-icon>radio_button_checked</mat-icon> -->
+                <div class="dot"><mat-icon>radio_button_checked</mat-icon>
 
 
                 <div class="videoNumber">
@@ -251,7 +239,7 @@
                 </div>
             </div>
 
-        </div>
+        </div>-->
 
     </div>
 

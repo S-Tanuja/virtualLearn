@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { MyCoursesComponent } from './my-courses/my-courses.component';
 import { HeaderComponent } from './header/header.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {MatIconModule} from '@angular/material/icon';
+// import {MatIconModule} from '@angular/material/icon';
 import { MyCourseHomeComponent } from './my-course-home/my-course-home.component';
 import { CourseOverviewComponent } from './course-overview/course-overview.component';
 import { CourseChaptersComponent } from './course-chapters/course-chapters.component';
@@ -17,9 +17,13 @@ import { ProgressScreenComponent } from './progress-screen/progress-screen.compo
 import { QuizResultComponent } from './quiz-result/quiz-result.component';
 import { FinalTestCongratulationsComponent } from './final-test-congratulations/final-test-congratulations.component';
 import { CertificateComponent } from './certificate/certificate.component';
-import {MatDialogModule} from '@angular/material/dialog';
+// import {MatDialogModule} from '@angular/material/dialog';
 import { CloseTestComponent } from './close-test/close-test.component';
 import { LoginComponent } from './login/login.component';
+import { MaterialModule } from './material/material.module';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthserviceInterceptor } from './token.interceptor';
+
 
 @NgModule({
   declarations: [
@@ -43,11 +47,21 @@ import { LoginComponent } from './login/login.component';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MatIconModule,
-    MatDialogModule
-
+    MaterialModule,
+    HttpClientModule
+    
   ],
-  providers: [],
+  providers: [
+
+    {
+
+      provide: HTTP_INTERCEPTORS,
+
+      useClass: AuthserviceInterceptor,
+
+      multi: true,
+
+    },],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,9 +1,78 @@
 
-    <div>
-        <img src="/assets/img_onboarding_illustration1.png" alt="">
+<div class="body">
+    <div class="container">
+
+        <div class="content-left">
+            <div class="ad">
+                <img src="assets/img_onboarding_illustration1.png" />
+
+                <div class="content">
+                    <p class="p1">Seamless Workflow</p>
+                </div>
+
+                <div class="content2">
+                    <p>Sync rosters, create and assign impactful video experiences, enrich your flipped classroom, and
+                        streamline tedious grading.</p>
+                </div>
+
+                <p class="p2"> ... </p>
+            </div>
+        </div>
+
+
+        <div class="content-right">
+            <div class="image">
+                <img class="img1" src="assets/img_virtuallearn logo_splash 2.png" />
+            </div>
+
+            <div class="greeting">
+                <p class="p3">Welcome Back!</p>
+                <p class="p4">Easy to learn anytime and anywhere. Login to your account</p>
+
+                <div class="media">
+                   <img src="/assets/Social Media.png" alt="">
+                </div>
+            </div>
+
+
+            <div class="userForm">
+                <form [formGroup]="inputForm">
+
+                    <div class="input">
+                        <mat-form-field>
+                            <input matInput type="text" placeholder="Username" formControlName="name" />
+                        </mat-form-field>
+
+                        <div *ngIf="inputForm.get('name')?.touched && inputForm.get('name')?.invalid">
+                            <div class="error" *ngIf="inputForm.get('name')?.errors?.['required']">Username required
+                            </div>
+                            <div class="error" *ngIf="inputForm.get('name')?.errors?.['pattern']">Username cannot be in
+                                numbers</div>
+                        </div>
+                    </div>
+
+                    <div class="input">
+                        <mat-form-field>
+                            <input matInput type="password" placeholder="Password" formControlName="password" (keydown)="onEnter($event,password.value)" #password />
+                        </mat-form-field>
+
+
+                        <div *ngIf="inputForm.get('password')?.touched">
+                            <div class="error" *ngIf="inputForm.get('password')?.errors?.['required']">Password required
+                            </div>
+                        </div>
+                    </div>
+
+                </form>
+                <button class="btn" [disabled]="inputForm.invalid" (click)="onSubmit()">Log in</button>
+            </div>
+
+            <div class="reg">
+                <p class="p5">Don't have a account?<span> Register </span></p>
+            </div>
+
+        </div>
+
     </div>
-    <div class="login">
-        <img src="/assets/img_virtuallearn logo_splash 2.png" alt="">
-    </div>
-    <p>Welcome</p>
+</div>
 
