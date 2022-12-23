@@ -17,18 +17,25 @@
 }
 #bgImage{
     width: 32.5rem;
+    height:20rem;
 }
 .status-btns button {
     color: #7A7A7A;
     border: none;
-    padding: 5px;
+    padding: 10px;
     margin-right: 2%;
     border-radius: 5px;
     background-color: transparent;
     cursor: pointer;
 }
 .status-btns{
+    display: flex;
+    align-items: center;
+    gap:1rem;
+    padding: 10px;
     margin-bottom: 2%;
+    font-size: 12px;
+    background-color: transparent;
 }
 .active{
     background-color: #092963;
@@ -84,4 +91,11 @@ p {
     display: flex;
     flex-direction: column;
     gap: 4rem;
+}
+.active{
+    /* padding: 0px 15px 12px 15px; */
+    padding: 10px;
+    color:white;
+    background-color: #042C5C;
+    /* border-bottom: 1px solid red; */
 }

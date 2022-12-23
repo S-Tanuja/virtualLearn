@@ -46,8 +46,13 @@ export class LoginComponent implements OnInit {
     this.service.logIn(body).subscribe({
       next: (data) => {
         console.log(data);
-        let token: any = data.headers.get('jwt-token');
+        let loginData=JSON.parse(data);
+        let token=loginData.access_token;
+        console.log(token);
         sessionStorage.setItem('token', token);
+
+        // let token: any = data.headers.get('jwt-token');
+        // sessionStorage.setItem('token', token);
         // alert(data)
       },
       error: (e) => {

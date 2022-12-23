@@ -1,15 +1,15 @@
 <app-header></app-header>
 <div class="main">
     <p class="myCourse">My Course</p>
-    <div class="status-btns">
-        <button (click)="ongoingCourse()">Ongoing</button>
-        <button (click)="completedCourse()">Completed</button>
+    <div class="status-btns" >
+        <div [class.active]="highlightOngoing" (click)="ongoingCourse()" >Ongoing</div>
+        <div  [class.active]="highlightCompleted" (click)="completedCourse()" >Completed</div>
     </div>
 
    <div class="courseDisplay">
      <div class="positioning"  *ngFor="let course of ongoing;index as i">
         <div class="bgImage">
-            <img src="/assets/art1.jpeg" id="bgImage"alt="">
+            <img src="{{course.url}}" id="bgImage"alt="">
         </div>
         <div class="courses">
             <div class="courseInline">
@@ -17,8 +17,8 @@
                     <p class="courseStatus">Ongoing</p>
                 </div>
                 <div>
-                    <p class="courseName">{{course.courseName}}</p>
-                    <p class="chapters">{{course.completedChapter}}/{{course.totalChapter}} &nbsp;chapters</p>
+                    <p class="courseName">{{course.title}}</p>
+                    <p class="chapters">{{course.chaptersCompleted}}/{{course.totalChapters}} &nbsp;chapters</p>
                 <div class="continue">
                     <button (click)="openCourse(course.courseId)">Continue</button>
                 </div>
@@ -30,7 +30,7 @@
     </div>
    <div class="positioning"  *ngFor="let course of completed;index as i">
         <div class="bgImage">
-            <img src="/assets/art1.jpeg" id="bgImage"alt="">
+            <img src="course.coursePhoto" id="bgImage"alt="">
         </div>
         <div class="courses">
             <div class="courseInline">

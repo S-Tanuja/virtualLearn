@@ -11,6 +11,8 @@ import { LoginServiceService } from '../login-service.service';
 export class MyCourseHomeComponent implements OnInit {
   ongoing:any;
   completed:any;
+  highlightOngoing=false;
+  highlightCompleted=false;
   constructor(private service:LoginServiceService,private router:Router) { }
 active="active";
   ngOnInit(): void {
@@ -21,15 +23,20 @@ active="active";
     
   }
  ongoingCourse(){
+  this.highlightOngoing=true;
+  this.highlightCompleted=false;
+  console.log(this.highlightOngoing);
+  
     this.service.ongoingCourse().subscribe(data=>{
       console.log(data);
       this.ongoing=JSON.parse(data);
       console.log(this.ongoing);
      
-      
     })
   }
   completedCourse(){
+    this.highlightCompleted=true;
+    this.highlightOngoing=false;
     this.service.completedCourse().subscribe(data=>{
       console.log(data);
       this.completed=JSON.parse(data);
@@ -43,7 +50,9 @@ active="active";
   openCourse(data:any){
     console.log(data);
     sessionStorage.setItem('courseId',data)
-    this.service.openCourse().subscribe(data=>{
+    this.service.openCourse().subscribe(data1=>{
+      console.log(data1);
+      
       this.router.navigate(['/courseOverview']);
     })
   }

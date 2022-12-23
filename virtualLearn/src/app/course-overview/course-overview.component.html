@@ -3,8 +3,12 @@
 <div class="main">
     <div class="submain">
 
-        <div class="showVideo">
-            <video src="{{courseOV.previewVideo}}" type="video/mp4" alt=""></video>
+        <div>
+            <!-- <video  class="showVideo" controls>
+                <source src="{{courseOvDetails.previewThisCourse.videoLink}}" type="video/mp4">
+            </video> -->
+            <video class="showVideo" controls src="{{courseOvDetails.previewThisCourse.videoLink}}"
+                type="video/mp4"></video>
         </div>
         <div class="videoDetails">
             <div>
@@ -12,15 +16,15 @@
                 <p class="courseChapters">{{courseOV.chapterCount}} Chapters | {{ courseOV.lessonCount}} lessons</p>
             </div>
             <div class="designbtn">
-                <button>Design</button>
+                <button>{{courseOV.categoryName}}</button>
             </div>
         </div>
 
         <p class="bluetxt">
-           {{courseOV.courseTagLine}}
+            {{courseOvDetails.previewThisCourse.description}}
         </p>
         <p class="videoInfo">
-          {{courseOV.description}}<span class="showmore">SHOW MORE</span>
+            {{courseOvDetails.description}}<span class="showmore">SHOW MORE</span>
         </p>
         <!-- <div class="testResult">
             <div class="result">
@@ -49,27 +53,29 @@
             </div>
         </div> -->
 
-       
+
 
     </div>
     <div class="sidebar">
 
         <div class="routeKeys">
-            <p>Overview</p>
-            <p>Chapters</p>
+            <p [class.active]="content1" (click)="courseOverview()">Overview</p>
+            <p [class.active]="content2" (click)="courseChapters()">Chapters</p>
         </div>
 
-         <p class="courseIncludes">Course Includes</p>
-        <div>
-            <div class="icon" class="sideContent">
-                <img src="/assets/clock.png" alt="">
-            </div>
-            <div class="iconInfo">
-                <p>3.5 total hrs</p>
-            </div>
-        </div>
+        <div class="overView" *ngIf="showOverview">
+            <p class="courseIncludes">Course Includes</p>
+            <div>
+                <div class="sideContent" *ngFor="let include of courseOvDetails.courseIncludes ">
+                    <div class="icon">
+                        <img src="/assets/clock.png" alt="">
+                    </div>
+                    <div class="iconInfo">
+                        <p>{{include}}</p>
+                    </div>
+                </div>
 
-        <div class="sideContent">
+                <!-- <div class="sideContent">
             <div class="icon">
                 <img src="/assets/Shape (1).png" alt="">
             </div>
@@ -114,133 +120,129 @@
             </div>
 
         </div>
-        <p class="learn" *ngFor="let learn of courseOV.learningOutconme">What you'll learn</p>
-        <div class="tick">
-            <img src="/assets/Combined-Shape.png" alt="">{{courseOV.learningOutconme.learn}}
-            <div class="tickContent">
+       </div> -->
+                <p class="learn">What you'll learn</p>
+                <div *ngFor="let learn of courseOvDetails.whatYouWillLearn
+        ">
+                    <div class="tick">
+                        <img src="/assets/Combined-Shape.png" alt="">
+                        <div class="tickContent">{{learn}}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="requirements">Requirements</div>
+                <ul class="requirementsList" *ngFor="let requirement of courseOvDetails.requirements">
+                    <li>{{requirement | titlecase}}</li>
+
+                </ul>
+                <p class="instructor">Instructor</p>
+                <div class="profile">
+                    <img src="{{courseOvDetails.instructor.instructorImage}}" alt="">
+                    <div>
+                        <div class="inst-name">{{courseOvDetails.instructor.name}}</div>
+                        <div class="inst-desig">{{courseOvDetails.instructor.designation}}</div>
+                    </div>
+                </div>
+                <div class="instInfo">
+                    {{courseOvDetails.instructor.description}}...<span class="showmore">SHOW MORE</span>
+                </div>
+            </div>
+           
+        </div>
+        <div class="chap" *ngIf="showChapters">
+      
+            <div class="sidebarChapters">
+                <p class="courseContent">Course Content</p>
+                <p class="courseInfo">{{courseChap.listOfChapters.courseContent.totalChapters}} |
+                    {{courseChap.listOfChapters.courseContent.totalLessons}} lessons |
+                    {{courseChap.listOfChapters.courseContent.totalTests}} Assignment Test |
+                    {{courseChap.listOfChapters.courseContent.totalDuration}} total length </p>
+                <div class="chap">
+                    <p class="chapName">Chapter 1 - Introduction to the course</p>
+                    <div class="addIcon">
+                        <mat-icon>add</mat-icon>
+                    </div>
+                </div>
+
+                <div class="chap">
+                    <p class="chapName">Chapter 1 - Introduction to the course</p>
+                    <div class="addIcon">
+                        <mat-icon>add</mat-icon>
+                    </div>
+                </div>
+
+                <div class="chap">
+                    <p class="chapName">Chapter 1 - Introduction to the course</p>
+                    <div class="addIcon">
+                        <mat-icon>add</mat-icon>
+                    </div>
+                </div>
+
+
+                <div>
+                    <div class="chk">
+                        <mat-icon>check_circle</mat-icon>
+                    </div>
+                    <div class="dot">
+                        <mat-icon>radio_button_checked</mat-icon>
+
+
+                        <div class="videoNumber">20</div>
+                        <div class="videoInfo">
+                            <div class="videoName">Create a new project and file</div>
+                            <div class="videoTime">01:35 mins</div>
+                        </div>
+                        <div class="vIcon">
+                            <mat-icon>play_circle</mat-icon>
+                        </div>
+                    </div>
+
+                    <div class="video">
+                        <div class="chk">
+                            <mat-icon>check_circle</mat-icon>
+                        </div>
+                        <div class="dot">
+                            <mat-icon>radio_button_checked</mat-icon>
+                        </div>
+
+
+                        <div class="videoNumber">20</div>
+                        <div class="videoInfo">
+                            <div class="videoName">Create a new project and file</div>
+                            <div class="videoTime">01:35 mins</div>
+                        </div>
+                        <div class="vIcon">
+                            <mat-icon>play_circle</mat-icon>
+                        </div>
+                    </div>
+
+                    <div class="video">
+                        <div class="chk">
+                            <mat-icon>check_circle</mat-icon>
+                        </div>
+                        <div class="dot">
+                            <mat-icon>radio_button_checked</mat-icon>
+
+
+                            <div class="videoNumber">
+                                <img src="/assets/Shape (5).png" alt="">
+                            </div>
+                            <div class="videoInfo">
+                                <div class="videoName">Final Test</div>
+                                <div class="videoTime">10 mins | 25 questions</div>
+                            </div>
+                            <div class="vIcon">
+                                <span class="percent">86 <sup class="pSym">%</sup></span>
+                                <div class="videoTime">Approval Rate</div>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                </div>
+
             </div>
         </div>
-        <!-- <div class="tick">
-            <img src="/assets/Combined-Shape.png" alt="">
-            <div class="tickContent">Design Website
-            </div>
-        </div>
-
-        <div class="tick">
-            <img src="/assets/Combined-Shape.png" alt="">
-            <div class="tickContent">Design Website
-            </div>
-        </div>
-
-        <div class="tick">
-            <img src="/assets/Combined-Shape.png" alt="">
-            <div class="tickContent">Design Website
-            </div>
-        </div> -->
-        <div class="requirements">Requirements</div>
-        <ul class="requirementsList">
-            <li>Internet Access </li>
-            <li>You should know your way around comouter basics</li>
-        </ul>
-        <p class="instructor">Instructor</p>
-        <div class="profile">
-            <img src="/assets/profile.jpeg" alt="">
-            <div>
-                <div class="inst-name">{{courseOV.instructorName}}</div>
-                <div class="inst-desig">{{courseOV.instructorDesignation}}</div>
-            </div>
-        </div>
-        <div class="instInfo">
-           {{courseOV.instructorDescription}}...<span class="showmore">SHOW MORE</span>
-        </div>
-        <div class="join">
-            JOIN COURSE
-        </div>
-    </div>  
-<div>
-
-
-        <!--<div class="sidebarChapters" >
-            <p class="courseContent">Course Content</p>
-            <p class="courseInfo"> 7 Chapter | 46 lessons | 6 Assignment Test | 3.5h total length </p>
-            <div class="chap">
-                <p class="chapName">Chapter 1 - Introduction to the course</p>
-                <div class="addIcon">
-                    <mat-icon>add</mat-icon>
-                </div>
-            </div>
-
-            <div class="chap">
-                <p class="chapName">Chapter 1 - Introduction to the course</p>
-                <div class="addIcon">
-                    <mat-icon>add</mat-icon>
-                </div>
-            </div>
-
-            <div class="chap">
-                <p class="chapName">Chapter 1 - Introduction to the course</p>
-                <div class="addIcon">
-                    <mat-icon>add</mat-icon>
-                </div>
-            </div>
-
-
-            <div class="video">
-                <div class="chk">
-                    <mat-icon>check_circle</mat-icon>
-                </div>
-                <div class="dot"><mat-icon>radio_button_checked</mat-icon> 
-
-
-                <div class="videoNumber">20</div>
-                <div class="videoInfo">
-                    <div class="videoName">Create a new project and file</div>
-                    <div class="videoTime">01:35 mins</div>
-                </div>
-                <div class="vIcon">
-                    <mat-icon>play_circle</mat-icon>
-                </div>
-            </div>
-
-            <div class="video">
-                <div class="chk"><mat-icon>check_circle</mat-icon></div>
-                <div class="dot">
-                    <mat-icon>radio_button_checked</mat-icon>
-                </div>
-
-
-                <div class="videoNumber">20</div>
-                <div class="videoInfo">
-                    <div class="videoName">Create a new project and file</div>
-                    <div class="videoTime">01:35 mins</div>
-                </div>
-                <div class="vIcon">
-                    <mat-icon>play_circle</mat-icon>
-                </div>
-            </div>
-
-            <div class="video">
-                <div class="chk">
-                    <mat-icon>check_circle</mat-icon>
-                </div>
-                <div class="dot"><mat-icon>radio_button_checked</mat-icon>
-
-
-                <div class="videoNumber">
-                    <img src="/assets/Shape (5).png" alt="">
-                </div>
-                <div class="videoInfo">
-                    <div class="videoName">Final Test</div>
-                    <div class="videoTime">10 mins | 25 questions</div>
-                </div>
-                <div class="vIcon">
-                   <span class="percent">86 <sup class="pSym">%</sup></span>
-                   <div class="videoTime">Approval Rate</div>
-                </div>
-            </div>
-
-        </div>-->
-
-    </div>
-
-</div>
+        <div>
