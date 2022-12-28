@@ -1,19 +1,21 @@
 .container {
-    padding: 70px;
+    padding: 0px 70px 40px 70px;
 }
 
-.heading{
+.heading {
     display: flex;
     justify-content: space-between;
     width: 100%;
     margin: auto;
     padding: 15px 0px;
 }
-.question{
+
+.question {
     font-size: 15px;
     font-weight: 500;
 }
-.choice{
+
+.choice {
     display: flex;
     align-items: center;
     text-align: center;
@@ -25,37 +27,60 @@
     gap: 0.5rem;
 
 }
-.qNo , .crctstatus , .wrongstatus{
+
+.qNo,
+.crctstatus,
+.wrongstatus,
+.notAnswered {
     font-size: 13px;
     font-weight: 550;
 }
-.crctstatus{
-    color: #1EAB0D ;
+
+.crctstatus {
+    color: #1EAB0D;
 }
-.wrongstatus{
+
+.wrongstatus {
     color: red;
 }
-.choiceIcon mat-icon, .cancelIcon mat-icon, .checkIcon mat-icon{
+
+.notAnswered {
+    color:#7A7A7A;
+}
+
+.choiceIcon mat-icon,
+.cancelIcon mat-icon,
+.checkIcon mat-icon {
     font-size: 15px;
     padding-top: 8px;
 }
-.choiceIcon mat-icon{
-    color:#7A7A7A ;
+
+.choiceIcon mat-icon {
+    color: #7A7A7A;
 }
-.cancelIcon mat-icon{
-    color:white;
+
+.cancelIcon mat-icon,
+.wrong {
+    color: white;
     background-color: red;
 }
-.checkIcon mat-icon{
+
+.checkIcon mat-icon {
     color: white;
-    background-color:green ;
+    background-color: green;
 }
-.choiceContent{
+
+.choiceContent {
     font-size: 14px;
 }
-::ng-deep .custom > mat-dialog-container{
+
+::ng-deep .custom>mat-dialog-container {
     left: 45%;
     width: 55%;
     position: absolute;
 }
-  
+
+.crct {
+    background-color: green;
+    color: #fff;
+}

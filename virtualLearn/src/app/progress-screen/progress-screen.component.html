@@ -3,12 +3,12 @@
     <div class="main">
         <p class="bg">Module test 1</p>
      <div class="toFlex">
-        <div class="vnumber">80</div>
+        <div class="vnumber">{{result.correctlyAnsweredInHundred}}</div>
         <div class="course">
             
             <div>
-                <div class="chapterName">Chapter 3: Setting up a new project</div>
-            <div class="courseName">Course: Learn Figma - UI/UX Design Essential Training</div>
+                <div class="chapterName">Chapter {{chapterNumber}}: {{chapterName}}</div>
+            <div class="courseName">{{courseName}}</div>
             </div>
         </div>
         </div>
@@ -16,15 +16,15 @@
             <div class="container">
                 <div>
                     <p class="heading">Passing Grade</p>
-                    <p class="score">75/100</p>
+                    <p class="score">{{result.passingGrade}}</p>
                 </div>
                 <div>
                     <p class="heading">Correct</p>
-                    <p class="score">20/25</p>
+                    <p class="score">{{result.correctlyAnswered}}</p>
                 </div>
                 <div>
                     <p class="heading">Wrong</p>
-                    <p class="score">05/25</p>
+                    <p class="score">{{result.wronglyAnswered}}</p>
                 </div>
             </div>
         </div>
@@ -34,17 +34,19 @@
         <p class="questions" (click)="solutions()">List of Questions</p>
     </div>
 <div class="main">
-    <div class="ques">
+    <div class="ques" *ngFor="let question of result.questions;index as i">
         <div>
-            <div class="qNo">Question1</div>
-            <div class="status">Correct Answer</div>
+            <div class="qNo">{{question}}</div>
+            <div class="status" *ngIf="result.selectedAndActualAnswerSet[i][0]==result.selectedAndActualAnswerSet[i][1]">Correct Answer</div>
+            <div class="statusW" *ngIf=" result.selectedAndActualAnswerSet[i][0]!=result.selectedAndActualAnswerSet[i][1] && result.selectedAndActualAnswerSet[i][0]!=null ">Wrong Answer</div>
+            <div class="notAnswered" *ngIf="result.selectedAndActualAnswerSet[i][0] == null  ">Not answered</div>
            </div>
            <div class="arrow">
-            <mat-icon>arrow_forward_ios</mat-icon>
+            <mat-icon (click)="solutions()">arrow_forward_ios</mat-icon>
            </div>
     </div>
 
-    <div class="ques">
+    <!-- <div class="ques">
         <div>
             <div class="qNo">Question2</div>
             <div class="statusW">Wrong Answer</div>
@@ -52,6 +54,6 @@
            <div class="arrow">
             <mat-icon>arrow_forward_ios</mat-icon>
            </div>
-    </div>
+    </div> -->
        
 </div>

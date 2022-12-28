@@ -52,7 +52,7 @@
     border: 1px solid #F0F0F0;
     margin-bottom: 2%;
     gap: 0.5rem;
-
+    cursor: pointer;
 }
 .selectedChoice{
     display: flex;
@@ -107,4 +107,12 @@ p{
     margin-right: 10%;
     padding: 5px 10px;
 }
+
+.selected{
+    background-color: green;
+}
+.backIcon{
+    cursor: pointer;
+}
+
 

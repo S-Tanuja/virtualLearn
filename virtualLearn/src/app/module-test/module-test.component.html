@@ -7,16 +7,17 @@
         </div>
     </div>
     <div class="submain1">
-        <div class="questionsComplete">Question 5 of 25</div>
+        <div class="questionsComplete">Question {{i+1}} of {{questions.totalQuestions}}</div>
         <div class="remainingTime">
             <div class="clock">
                 <mat-icon>alarm</mat-icon>
             </div>
-            <div class="remTime">8mins remaining</div>
+            <div class="remTime">{{counter | time}}
+              remaining</div>
         </div>
     </div>
-    <p class="question">How to create dot-matrix in Figma without doing it dot-by-dot?</p>
-    <div class="choice">
+    <p class="question">{{questions.questions[i]}}</p>
+    <!-- <div class="choice">
         <div class="choiceIcon">
             <mat-icon>radio_button_unchecked </mat-icon>
         </div>
@@ -30,30 +31,44 @@
         </div>
         <div class="choiceContent">Follow a dash line</div>
 
-    </div>
+    </div> -->
 
-    <div class="choice">
-        <div class="choiceIcon">
-            <mat-icon>radio_button_unchecked </mat-icon>
+    <div *ngFor="let choice of questions.options[i];index as i" >
+        <div  (click)="selectedChoice(i)"class="choice" [style.background-color]="rowClicked == i ? '#EC5D52' : 'transparent'" [style.color]="rowClicked == i ? 'white' : 'black'"
+        (click)="changeTableRowColor(i)">
+            <div class="choiceIcon" *ngIf="chosenIndex!=i || clicked==false ">
+                
+                <mat-icon>radio_button_unchecked </mat-icon>
+            </div>
+            <div class="selectedchoiceIcon" *ngIf="chosenIndex==i && clicked==true">
+                <mat-icon>check_circle</mat-icon>
+            </div>
+            <div>
+                <div class="choiceContent">{{choice}}</div>
+            </div>
         </div>
-        <div class="choiceContent">Follow a dash line</div>
 
     </div>
 
-    <div class="selectedChoice">
+    <!-- <div class="selectedChoice">
         <div class="selectedchoiceIcon">
             <mat-icon>check_circle</mat-icon>
         </div>
         <div class="choiceContent">Follow a dash line</div>
 
-    </div>
+    </div> -->
     <div class="navigateToChapter">
         <div class="navigateChapter">
-            <p>Chapter 3</p>
-            <p>Setting up a new project</p>
+            <p>Chapter {{chapterNumber}}</p>
+            <p>{{chapterName}}</p>
         </div>
-        <div class="backIcon"><mat-icon>arrow_back</mat-icon></div>
-        <div class="submitbtn"><button>Submit</button></div>
+        <div class="backIcon" (click)="goBack()">
+            <mat-icon *ngIf="this.i">arrow_back</mat-icon>
+        </div>
+        <div class="backIcon" (click)="goNext()">
+            <mat-icon *ngIf="!(this.i+1==questions.totalQuestions)">arrow_forward</mat-icon>
+        </div>
+        <div class="submitbtn" (click)="submit()"><button *ngIf="this.i+1==questions.totalQuestions" >Submit</button></div>
     </div>
 
 </div>

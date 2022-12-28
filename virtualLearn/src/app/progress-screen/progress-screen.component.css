@@ -18,7 +18,7 @@
     justify-content: center;
     text-align: center;
     align-items: center;
-    gap: 1rem;
+    gap: 5rem;
     position: relative;
 }
 .bgcolor{
@@ -31,7 +31,7 @@ p{
 .vnumber{
     background-color: #FCBE4B;
     color: white;
-    padding: 15px 12px;
+    padding: 12px 12px;
     width: 4rem;
     text-align: center;
     font-size: 33px;
@@ -45,7 +45,7 @@ p{
 }
 .courseName{
     color: white;
-    font-size: 10px;
+    font-size: 15px;
     font-weight: 400;
 }
 .container{
@@ -104,6 +104,13 @@ p{
 }
 .statusW{
     color:red;
+    font-size: 10px;
+    font-weight: 400;
+    line-height: 25px;
+    padding-bottom: 10%;
+}
+.notAnswered{
+    color:#b3abab;
     font-size: 10px;
     font-weight: 400;
     line-height: 25px;

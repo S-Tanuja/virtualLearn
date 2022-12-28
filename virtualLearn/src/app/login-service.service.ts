@@ -46,6 +46,39 @@ courseChapters(){
    }
    return this.http.post(environment.url + `getCourse/chapters`,body,{ headers:new HttpHeaders().set('Authorization',"Bearer "+ this.token), responseType:'text' })
 }
+courseTests(){
+  this.getCourseId();
+  let testid=sessionStorage.getItem('testId')
+  let body={ 
+    "courseId":this.courseId,
+    "testId":testid
+   }
+   return this.http.post(environment.url + `displayTest`,body,{ headers:new HttpHeaders().set('Authorization',"Bearer "+ this.token), responseType:'text' })
+}
+submit(){
+  let details=JSON.parse(sessionStorage.getItem('getChaptersList') as any);
+  let testid=sessionStorage.getItem('testId');
+ let chapterNumber = JSON.parse(sessionStorage.getItem('chapNo') as any);
+     let chapterName = JSON.parse(sessionStorage.getItem('chapName') as any);
+     let chapId= JSON.parse(sessionStorage.getItem('chapId') as any);
+     let answers=JSON.parse(sessionStorage.getItem('answers')as any);
+  let body={ 
+    "courseId":this.courseId,
+    "testId":testid,
+    "chapterNumber" :chapterNumber,
+    "chapterTitle":chapterName,
+    "chapterId":chapId,
+    "answers":answers
+   }
+   return this.http.post(environment.url + `submitTest`,body,{ headers:new HttpHeaders().set('Authorization',"Bearer "+ this.token), responseType:'text' })
+}
+testResult(){
+  let testid=sessionStorage.getItem('testId');
+  let body={ 
+    "testId":testid,
+  }
+  return this.http.post(environment.url + `getCompletedTestResultData`,body,{ headers:new HttpHeaders().set('Authorization',"Bearer "+ this.token), responseType:'text' })
+}
 }
 
 

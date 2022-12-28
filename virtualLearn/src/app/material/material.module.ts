@@ -10,7 +10,6 @@ import {MatInputModule} from '@angular/material/input';
 import {MatTableModule} from '@angular/material/table';
 import {MatSelectModule} from '@angular/material/select';
 import { ReactiveFormsModule } from '@angular/forms';
-
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatRadioModule} from '@angular/material/radio';
 import { MatNativeDateModule } from '@angular/material/core';
@@ -31,8 +30,8 @@ const materials = [
   MatDatepickerModule,
   MatRadioModule,
   MatNativeDateModule,
+  MatBadgeModule,
 
-  MatBadgeModule
 ]
 
 @NgModule({

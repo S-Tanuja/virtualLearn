@@ -16,7 +16,7 @@ export class MyCourseHomeComponent implements OnInit {
   constructor(private service:LoginServiceService,private router:Router) { }
 active="active";
   ngOnInit(): void {
-    // this.ongoingCourse();
+    this.ongoingCourse();
     
   }
   activeFunction(){
@@ -31,6 +31,9 @@ active="active";
       console.log(data);
       this.ongoing=JSON.parse(data);
       console.log(this.ongoing);
+      console.log(this.ongoing[0].title);
+      
+      sessionStorage.setItem('courseName',JSON.stringify(this.ongoing[0].title))
      
     })
   }
@@ -49,7 +52,7 @@ active="active";
 
   openCourse(data:any){
     console.log(data);
-    sessionStorage.setItem('courseId',data)
+    sessionStorage.setItem('courseId',data);
     this.service.openCourse().subscribe(data1=>{
       console.log(data1);
       

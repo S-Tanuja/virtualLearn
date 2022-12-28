@@ -23,6 +23,9 @@ import { LoginComponent } from './login/login.component';
 import { MaterialModule } from './material/material.module';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthserviceInterceptor } from './token.interceptor';
+import { ConfirmSubmitComponent } from './confirm-submit/confirm-submit.component';
+import { TimePipe } from './time.pipe';
+import {MatDialogModule} from '@angular/material/dialog';
 
 
 @NgModule({
@@ -41,15 +44,17 @@ import { AuthserviceInterceptor } from './token.interceptor';
     FinalTestCongratulationsComponent,
     CertificateComponent,
     CloseTestComponent,
-    LoginComponent
+    LoginComponent,
+    ConfirmSubmitComponent,
+    TimePipe
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     MaterialModule,
-    HttpClientModule
-    
+    HttpClientModule,
+    MatDialogModule
   ],
   providers: [
 
