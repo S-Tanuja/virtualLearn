@@ -27,19 +27,24 @@ export class ConfirmSubmitComponent implements OnInit {
   let answers=JSON.parse(sessionStorage.getItem('answers')as any);
     this.service.submit().subscribe({
       next:(data)=>{
-        console.log(data);
+        // console.log(data);
         let show=JSON.parse(data)
       alert(show.message);
-      sessionStorage.setItem('sstatus',show.message)
+      if(show.message=="You have already passed this test"){
+        this.router.navigate(['/congratulations']);
+      }else{
+        alert('Test failed')
+        this.router.navigate(['/courseOverview']);
+      }
       },
       error:(e)=>{
-        alert(e);
+        // alert(e);
         
       }
       
     })
     this.dialogRef.close({data :  'done'})
-    this.router.navigate(['/congratulations']);
+    
   }
 
 

@@ -30,9 +30,9 @@ export class ProgressScreenComponent implements OnInit {
         this.chapterName = JSON.parse(sessionStorage.getItem('chapName') as any);
         this.courseName=JSON.parse(sessionStorage.getItem('courseName') as any);
         this.result=JSON.parse(data);
-        alert(this.result.message);
-        sessionStorage.setItem('sstatus',this.result.message)
-        console.log(this.result.correctlyAnsweredInHundred);
+        // alert(this.result.message);9
+        // sessionStorage.setItem('sstatus',this.result.message)
+        // console.log(this.result.correctlyAnsweredInHundred);
        
       },
       error:(e:any)=>{

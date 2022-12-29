@@ -10,6 +10,7 @@ import { environment } from 'src/environments/environment';
 export class LoginServiceService {
   courseId:any;
   token:any;
+  completeStatus:any;
   constructor(private http:HttpClient) { }
   getToken(){
     this.token = JSON.parse(sessionStorage.getItem('token') as any);
@@ -28,7 +29,7 @@ ongoingCourse(){
 
 }
 completedCourse(){
-  return this.http.get(environment.url + 'completedCourses',{ responseType:'text' })
+  return this.http.get(environment.url + 'completedCourses',{ headers:new HttpHeaders().set('Authorization',"Bearer "+ this.token),responseType:'text' })
 }
 openCourse(){
   this.getCourseId();
@@ -73,12 +74,54 @@ submit(){
    return this.http.post(environment.url + `submitTest`,body,{ headers:new HttpHeaders().set('Authorization',"Bearer "+ this.token), responseType:'text' })
 }
 testResult(){
+ 
   let testid=sessionStorage.getItem('testId');
   let body={ 
     "testId":testid,
   }
   return this.http.post(environment.url + `getCompletedTestResultData`,body,{ headers:new HttpHeaders().set('Authorization',"Bearer "+ this.token), responseType:'text' })
 }
+testStatus(){
+  let testid=sessionStorage.getItem('testId');
+  console.log(testid);
+  
+  let body={ 
+    "testId":testid,
+  }
+  return this.http.post(environment.url + `getTestStatus`,body,{ headers:new HttpHeaders().set('Authorization',"Bearer "+ this.token), responseType:'text' })
+}
+userProgress(){
+  let lessonNumber=(sessionStorage.getItem('lessNo'));
+  let pausedTime=sessionStorage.getItem('pausedTime');
+  // console.log(sessionStorage.getItem('pausedTime'));
+  
+  let lessonDuration=sessionStorage.getItem('lessdur');
+ 
+  if(lessonDuration==pausedTime){
+    this.completeStatus=true;
+  }else{
+    this.completeStatus=false;
+  }
+  // alert('hi')
+  let body={
+    "courseId":this.courseId,
+    "videoCompleted":this.completeStatus,
+    "pauseTime":pausedTime,
+    "videoSerialNumber":lessonNumber
+  }
+  return this.http.post(environment.url + `updateProgress`,body,{ headers:new HttpHeaders().set('Authorization',"Bearer "+ this.token), responseType:'text' })
+  
+}
+// videoData(){
+//   let lessonNumber=sessionStorage.getItem('lessNo');
+
+//   let body={ 
+//     "courseId":this.courseId,
+//     "serialNumberOfLesson":lessonNumber
+//   }
+
+//   return this.http.post(environment.url + `getVideoData`,body,{ headers:new HttpHeaders().set('Authorization',"Bearer "+ this.token), responseType:'text' })
+// }
 }
 
 

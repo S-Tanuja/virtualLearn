@@ -26,6 +26,8 @@ export class ModuleTestComponent implements OnInit {
   rowClicked:any;
   chosenIndex:any;
   option:any[]=[];
+  chose:any;
+  notchose:any;
   answersArr: any[] = [];
   i = 0;
   counter:any;
@@ -60,7 +62,7 @@ export class ModuleTestComponent implements OnInit {
   }
   goBack() {
     this.clicked=false;
-    this.rowClicked = -1
+    this.rowClicked = -1;
     if (this.i > 0) {
       this.i--;
       this.questions.questions[this.i] = this.questions.questions[this.i]
@@ -118,10 +120,11 @@ export class ModuleTestComponent implements OnInit {
     if(this.pause==false){
     this.interval = setInterval(() => {
         this.counter--;
-        console.log(this.counter);
+        // console.log(this.counter);
         
     if (this.counter < 0 ) {
       clearInterval(this.interval);
+      this.submitTest();
     //  alert('Time is up!');
       this.router.navigate(['/congratulations'])
     }
@@ -142,7 +145,32 @@ export class ModuleTestComponent implements OnInit {
       }
     })
   }
-  
+  submitTest(){
+    this.chose=true;
+    this.notchose=false
+    // clearInterval(this.interval);
+    let answers=JSON.parse(sessionStorage.getItem('answers')as any);
+      this.service.submit().subscribe({
+        next:(data)=>{
+          // console.log(data);
+          let show=JSON.parse(data)
+        alert(show.message);
+        if(show.message=="You have already passed this test"){
+          this.router.navigate(['/congratulations']);
+        }else{
+          alert('Test failed')
+          this.router.navigate(['/courseOverview']);
+        }
+        },
+        error:(e)=>{
+          // alert(e);
+          
+        }
+        
+      })
+      // this.dialogRef.close({data :  'done'})
+      
+    } 
 
 }
 

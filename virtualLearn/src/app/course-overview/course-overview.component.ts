@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AnyCatcher } from 'rxjs/internal/AnyCatcher';
 import { LoginServiceService } from '../login-service.service';
 import { ModuleTestComponent } from '../module-test/module-test.component';
 
@@ -24,6 +25,9 @@ export class CourseOverviewComponent implements OnInit {
   totalChap: any;
   totalLessons: any;
   videoLink: any;
+  testMessage: any;
+  // vidStatus:any;
+  currentTime: any;
   constructor(private service: LoginServiceService, private router: Router) { }
 
   ngOnInit(): void {
@@ -38,12 +42,12 @@ export class CourseOverviewComponent implements OnInit {
       // console.log(data);
       this.courseOV = JSON.parse(data);
       console.log(this.courseOV);
-      
+
       this.courseOvDetails = this.courseOV.courseOverview.overViewId;
       // console.log(this.courseOvDetails);
       this.totalChap = JSON.parse(sessionStorage.getItem('totalChap') as any);
       this.totalLessons = JSON.parse(sessionStorage.getItem('totalLessons') as any);
-      this.videoLink=this.courseOvDetails.previewThisCourse.videoLink
+      this.videoLink = this.courseOvDetails.previewThisCourse.videoLink
       // console.log(this.courseOvDetails.previewThisCourse.videoLink);
 
 
@@ -92,6 +96,7 @@ export class CourseOverviewComponent implements OnInit {
     sessionStorage.setItem('chapNo', JSON.stringify(chapterDesc.chapterNumber));
     sessionStorage.setItem('chapName', JSON.stringify(chapterDesc.chapterTitle));
     sessionStorage.setItem('chapId', JSON.stringify(this.courseChap.listOfChapters.totalChapters[0]._id));
+    // sessionStorage.setItem('lessNo',JSON.stringify());
     //  console.log(chapterDesc.dropdown);
 
     //  console.log(chapterDesc.chapterNumber);
@@ -99,7 +104,7 @@ export class CourseOverviewComponent implements OnInit {
     let allData = JSON.parse(sessionStorage.getItem('getChaptersList') as any);
     let object = allData.find((eachObject: any) => {
 
-     
+
       let chapId = eachObject.chapterNumber == chapterDesc.chapterNumber;
 
       return chapId;
@@ -122,21 +127,91 @@ export class CourseOverviewComponent implements OnInit {
 
 
     sessionStorage.setItem('testId', testId);
-    let status=sessionStorage.getItem('sstatus');
-    alert(status)
-    if ( status== "You have already passed this test") {
-      if (confirm("View result?")) {
-        this.router.navigate(['progressScreen']);
-      }
-    } else{
-      this.router.navigate(['moduleTests']);
-    }
+    // let status=sessionStorage.getItem('sstatus');
+    // alert(status)
+    // if ( status== "You have already passed this test") {
+    //   if (confirm("View result?")) {
+    //     this.router.navigate(['progressScreen']);
+    //   }
+    // } else{
+    //   this.router.navigate(['moduleTests']);
+    // }
   }
   //   else
   //  
   //  }
-  playVideo(lessonUrl:any){
-    this.videoLink=lessonUrl;
+  playVideo(lessonUrl: any, lessonNum: any, lessonDur:any) {
+    // console.log(lessonUrl);
+    sessionStorage.setItem('lessNo', (lessonNum))
+    sessionStorage.setItem('lessdur', (lessonDur))
+    this.videoLink = lessonUrl;
+    alert(this.userProgress1)
   }
+  testStatus1(testId1: any) {
+    sessionStorage.setItem('testId', testId1);
+    this.service.testStatus().subscribe({
+
+      next: data => {
+        console.log(data);
+        let stat = JSON.parse(data);
+        this.testMessage = stat.message;
+
+
+      }, complete: () => {
+        console.log(this.testMessage);
+        if (this.testMessage == "true") {
+          if (confirm("You have already passed this test.\n View Result?"))
+            this.router.navigate(['progressScreen']);
+        } else {
+          this.router.navigate(['moduleTests']);
+        }
+      }
+    })
+  }
+  setCurrentTime(data: any) {
+
+    var video = document.getElementById("video") as any;
+    video.addEventListener("pause", timev);
+
+    function timev() {
+      var curtime = video.currentTime;
+      // console.log(curtime);
+      sessionStorage.setItem('pausedTime',JSON.stringify(curtime))
+      sessionStorage.setItem('pauseStatus',video.paused)
+    }
+    sessionStorage.getItem('pauseStatus');
+    if(sessionStorage.getItem('pauseStatus')){
+      // alert('hey')
+      this.service.userProgress().subscribe(data=>{
+        alert('hello')
+        console.log(data);
+        
+      })
+    }
+  }
+  // userProgress(data:any){
+  //   var video = document.getElementById("video") as any;
+  //   video.addEventListener("pause", this.userProgress1);
+  //   // function 
+  // }
+
+
+  userProgress1(data:any){
+    alert('hi')
+    this.service.userProgress().subscribe(data=>{
+      debugger;
+      // alert('hello')
+      console.log(data);
+      
+    })}
+
+    
+
+  // completedLessonVideo(){
+  //       this.service.videoData().subscribe(data=>{
+  //         console.log(data);
+
+  //       })
+  // }
 
 }

@@ -13,7 +13,7 @@
                 <mat-icon>alarm</mat-icon>
             </div>
             <div class="remTime">{{counter | time}}
-              remaining</div>
+                remaining</div>
         </div>
     </div>
     <p class="question">{{questions.questions[i]}}</p>
@@ -33,11 +33,12 @@
 
     </div> -->
 
-    <div *ngFor="let choice of questions.options[i];index as i" >
-        <div  (click)="selectedChoice(i)"class="choice" [style.background-color]="rowClicked == i ? '#EC5D52' : 'transparent'" [style.color]="rowClicked == i ? 'white' : 'black'"
-        (click)="changeTableRowColor(i)">
+    <div *ngFor="let choice of questions.options[i];index as i">
+        <div (click)="selectedChoice(i)" class="choice"
+            [style.background-color]="rowClicked == i ? '#EC5D52' : 'transparent'"
+            [style.color]="rowClicked == i ? 'white' : 'black'" (click)="changeTableRowColor(i)">
             <div class="choiceIcon" *ngIf="chosenIndex!=i || clicked==false ">
-                
+
                 <mat-icon>radio_button_unchecked </mat-icon>
             </div>
             <div class="selectedchoiceIcon" *ngIf="chosenIndex==i && clicked==true">
@@ -68,7 +69,8 @@
         <div class="backIcon" (click)="goNext()">
             <mat-icon *ngIf="!(this.i+1==questions.totalQuestions)">arrow_forward</mat-icon>
         </div>
-        <div class="submitbtn" (click)="submit()"><button *ngIf="this.i+1==questions.totalQuestions" >Submit</button></div>
+        <div class="submitbtn" (click)="submit()"><button *ngIf="this.i+1==questions.totalQuestions">Submit</button>
+        </div>
     </div>
 
 </div>

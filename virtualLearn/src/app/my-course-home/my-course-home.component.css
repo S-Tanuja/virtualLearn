@@ -12,12 +12,13 @@
     z-index: 1;
 } */
 .bgImage{
-    position: absolute;
+    position: absolute; 
     
 }
 #bgImage{
     width: 32.5rem;
     height:20rem;
+    filter:brightness(50%);
 }
 .status-btns button {
     color: #7A7A7A;
