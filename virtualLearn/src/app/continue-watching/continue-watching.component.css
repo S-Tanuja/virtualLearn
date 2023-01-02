@@ -1,0 +1,21 @@
+.btnW{
+    background-color: #EC5D52;
+    color: white;
+    padding: 12px;
+    text-align: center;
+    margin-bottom: 4%;
+}
+.btnB{
+    background-color: #072D5B;
+    color: white;
+    padding: 12px;
+    font-size: 15px;
+    text-align: center;
+}
+p{
+    text-align: center;
+}
+::ng-deep .custom>mat-dialog-container {
+    /* position: absolute;
+    left: 20%; */
+}

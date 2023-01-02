@@ -18,6 +18,9 @@
     justify-content: space-between;
     gap: 10%;
 }
+.logo img{
+    cursor: pointer;
+}
 .info , .searchBar mat-icon{
     color: white;
 }

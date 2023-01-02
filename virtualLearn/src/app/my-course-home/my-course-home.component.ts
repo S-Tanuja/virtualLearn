@@ -9,14 +9,14 @@ import { LoginServiceService } from '../login-service.service';
   styleUrls: ['./my-course-home.component.css']
 })
 export class MyCourseHomeComponent implements OnInit {
-  ongoing:any;
-  completed:any;
+ courses:any;
   highlightOngoing=false;
   highlightCompleted=false;
   constructor(private service:LoginServiceService,private router:Router) { }
 active="active";
   ngOnInit(): void {
     this.ongoingCourse();
+    sessionStorage.setItem('div1','Ongoing')
     
   }
   activeFunction(){
@@ -25,34 +25,37 @@ active="active";
  ongoingCourse(){
   this.highlightOngoing=true;
   this.highlightCompleted=false;
+  this.courses=[];
   console.log(this.highlightOngoing);
   
     this.service.ongoingCourse().subscribe(data=>{
       console.log(data);
-      this.ongoing=JSON.parse(data);
-      console.log(this.ongoing);
-      console.log(this.ongoing[0].title);
+      this.courses=JSON.parse(data);
+      console.log(this.courses);
       
-      sessionStorage.setItem('courseName',JSON.stringify(this.ongoing[0].title))
+  sessionStorage.setItem('courseName',JSON.stringify(this.courses[0].title))
      
     })
   }
   completedCourse(){
+    sessionStorage.setItem('div1','Completed')
+
     this.highlightCompleted=true;
     this.highlightOngoing=false;
+    this.courses=[];
     this.service.completedCourse().subscribe(data=>{
       console.log(data);
-      this.completed=JSON.parse(data);
-      console.log(this.completed); 
-    },
-    (error)=>{
-      alert("No Completed Courses");
+      this.courses=JSON.parse(data);
+      console.log(this.courses);
     })
+ 
   }
 
-  openCourse(data:any){
+  openCourse(data:any,data1:any){
     console.log(data);
     sessionStorage.setItem('courseId',data);
+    sessionStorage.setItem('title',data1);
+
     this.service.openCourse().subscribe(data1=>{
       console.log(data1);
       

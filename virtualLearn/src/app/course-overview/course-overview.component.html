@@ -1,13 +1,42 @@
 <app-header></app-header>
-<p class="myCourse">My Course</p>
+<p class="myCourse">My Course <span > > {{showdiv1}}</span> <span  *ngIf="show"> > {{title}}</span></p>
 <div class="main">
     <div class="submain">
+        <div>
+            <!-- <video class="showVideo" id="video" controls src="{{videoLink}}" type="video/mp4" (timeupdate)="setCurrentTime($event)" (pause)="userProgress1($event)"></video> -->
+            <vg-player  class="showVideo" >
+                <vg-overlay-play></vg-overlay-play>
+                <vg-buffering></vg-buffering>
+                <vg-scrub-bar>
+                    <vg-scrub-bar-current-time></vg-scrub-bar-current-time>
+                    <vg-scrub-bar-buffering-time></vg-scrub-bar-buffering-time>
+                </vg-scrub-bar>
+                <vg-controls >
+                    <vg-play-pause (click)="updateUserProgress()" ></vg-play-pause>
+                    <vg-playback-button ></vg-playback-button>
+                    <vg-time-display vgProperty="current" vgFormat="mm:ss"></vg-time-display>
+                    <vg-scrub-bar style="pointer-events: none;"></vg-scrub-bar>
+                    <vg-time-display vgProperty="left" vgFormat="mm:ss"></vg-time-display>
+                    <vg-time-display vgProperty="total" vgFormat="mm:ss"></vg-time-display>
+                    <vg-track-selector></vg-track-selector>
+                    <vg-mute></vg-mute>
+                    <vg-volume></vg-volume>
+                    <vg-fullscreen></vg-fullscreen>
+                </vg-controls>
+                <video [vgMedia]="$any(media)" #media src="{{videoLink}}"type="video/mp4" id="video"
+                    preload="auto" (ended)="videoCompleted()" data-second="" crossorigin>
+                    <source   type="video/mp4"> 
+                    <track kind="subtitles" label="English"
+                        src="http://static.videogular.com/assets/subs/pale-blue-dot.vtt" srclang="en" default>
+                </video>
 
-        <div (click)="userProgress1">
-            <!-- <video  class="showVideo" controls>
-                <source src="{{courseOvDetails.previewThisCourse.videoLink}}" type="video/mp4">
-            </video> -->
-            <video class="showVideo" id="video" controls src="{{videoLink}}" type="video/mp4" (timeupdate)="setCurrentTime($event)" (pause)="userProgress1($event)"></video>
+            </vg-player>
+
+
+
+
+
+            
         </div>
         <div class="videoDetails">
             <div>
@@ -23,7 +52,8 @@
             {{courseOvDetails.previewThisCourse.description}}
         </p>
         <p class="videoInfo">
-            {{courseOvDetails.description}}<span class="showmore">SHOW MORE</span>
+            {{courseOvDetails.description}}
+            <!-- <span class="showmore">SHOW MORE</span> -->
         </p>
         <!-- <div class="testResult">
             <div class="result">
@@ -62,7 +92,7 @@
             <p [class.active]="content2" (click)="courseChapters()">Chapters</p>
         </div>
 
-        <div class="overView" *ngIf="showOverview">
+        <div class="overView" *ngIf="showoc == 'overview' ">
             <p class="courseIncludes">Course Includes</p>
             <div>
                 <div class="sideContent" *ngFor="let include of courseOvDetails.courseIncludes ">
@@ -149,9 +179,9 @@
             </div>
 
         </div>
-        <div class="chap" *ngIf="showChapters">
+        <div class="chap" *ngIf= "showoc == 'chapters' ">
 
-            <div class="sidebarChapters">
+            <div class="sidebarChapters" >
                 <p class="courseContent">Course Content</p>
                 <p class="courseInfo"></p>
                 <div *ngFor="let chapter of chaptersList">
@@ -163,40 +193,48 @@
                         </div>
                     </div>
                     <div *ngIf="chapter.dropdown==true">
-                        <div class="video" *ngFor="let lesson of chapter.lessons">
-                            <div class="chk">
+                        <div class="video" *ngFor="let lesson of chapter.lessons;index as i">
+                            <div class="chk" *ngIf="lesson.serialNumberOfLesson<ongoingSerNum">
                                 <mat-icon>check_circle</mat-icon>
                             </div>
-                            <div class="dot">
+                            <div class="dotfill" *ngIf="lesson.serialNumberOfLesson==ongoingSerNum">
                                 <mat-icon>radio_button_checked</mat-icon>
                             </div>
+                            <div class="dot" *ngIf="lesson.serialNumberOfLesson>ongoingSerNum">
+                                <mat-icon>radio_button_checked</mat-icon>
+                            </div>
+
                             <div class="videoNumber">{{lesson.serialNumberOfLesson}}</div>
                             <div class="videoInfo">
                                 <div class="videoName">{{lesson.title}}</div>
                                 <div class="videoTime">{{lesson.duration | time}}</div>
                             </div>
-                            <div class="vIcon">
-                                <mat-icon (click)="playVideo(lesson.url,lesson.serialNumberOfLesson,lesson.duration)">play_circle</mat-icon>
+                            <div class="vIcon" *ngIf="lesson.serialNumberOfLesson<=ongoingSerNum" (click)=" completedLessonVideo()">
+                                <mat-icon  (click)="playVideo(lesson.url,lesson.serialNumberOfLesson,lesson.duration,i)">play_circle</mat-icon>
+                            </div>
+                            <div class="vDIcon" *ngIf="lesson.serialNumberOfLesson>ongoingSerNum">
+                                <mat-icon  >play_circle</mat-icon>
                             </div>
                         </div>
 
-                        <div class="video" *ngIf="chapter.test!=null" (click)="moduleTest(chapter.test._id)"  >
+                        <div class="video" *ngIf="chapter.test!=null"   >
 
-                            <div class="chk">
+                            <!-- <div class="chk">
                                 <mat-icon>check_circle</mat-icon>
-                            </div>
+                            </div> -->
                             <div class="dot">
                                 <mat-icon>radio_button_checked</mat-icon>
                             </div>
 
-                            <div class="videoNumber">
+                            <div class="videoNumber" (click)="testStatus1(chapter.test._id)">
                                 <img src="/assets/Shape (5).png" alt="">
                             </div>
-                            <div class="videoInfo" (click)="testStatus1(chapter.test._id)">
+                            <div class="videoInfo" >
                                 <div class="videoName">{{chapter.test.testTitle}} {{ chapter.test.testNumber}}</div>
-                                <div class="videoTime">{{chapter.test.totalTimeAlloted }}mins |
+                                <div class="videoTime">{{chapter.test.totalTimeAlloted | time }}mins |
                                     {{chapter.test.totalQuestions}}questions</div>
                             </div>
+                            <div></div>
                             <!-- <div class="vIcon">
                                 <span class="percent">86 <sup class="pSym">%</sup></span>
                                 <div class="videoTime">Approval Rate</div>

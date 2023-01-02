@@ -16,7 +16,7 @@ let sec = totalSeconds % 60;
 let completeDuration;
 if(hrs<=0){
  return mins+'min '+sec+'sec';
-}else{
+}else {
   return hrs+'.'+ mins+'h '+sec+'sec';
 }
   }

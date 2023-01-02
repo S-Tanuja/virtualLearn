@@ -25,13 +25,18 @@ export class ModuleTestComponent implements OnInit {
   questions: any;
   rowClicked:any;
   chosenIndex:any;
-  option:any[]=[];
+  option:any;
   chose:any;
   notchose:any;
   answersArr: any[] = [];
   i = 0;
   counter:any;
-
+  index:any;
+  option1:any;
+  qstn:any;
+  highlightArr:any;
+  myOptions:any[]=[];
+  finalArray:any[]=[];
   ngOnInit(): void {
     this.getQuestions();
     
@@ -60,9 +65,72 @@ export class ModuleTestComponent implements OnInit {
     }
     )
   }
+
+
+  modifyQuestionData() {
+    for (let i = 0; i < this.questions.totalQuestions.length; i++) {
+      this.myOptions = []
+      let question = {
+        questionName: this.questions.totalQuestions[i],
+        questionNumber: i + 1,
+        options: this.modifyOptions(this.questions.options[i])
+      }
+      this.finalArray.push(question)
+    }
+    console.log("final Array", this.finalArray);
+  }
+
+
+
+  modifyOptions(options: any): any {
+    for (let j = 0; j < options.length; j++) {
+      let opt =
+      {
+        value: options[j],
+        isSelcted: false,
+        index: j
+      }
+      this.myOptions.push(opt)
+    }
+    return this.myOptions;
+
+  }
+  saveAnswer(opt: any) {
+
+    console.log(opt)
+
+    let options = this.singleQuestion.options;
+
+    console.log(options)
+
+    options.map((el: any) => {
+
+      if (el.index == opt.index) {
+
+        el.isSelcted = true
+
+        // this.optionRequestForApi.push(opt.index)
+
+      } else {
+
+        el.isSelcted = false;
+
+        // this.optionRequestForApi.push(null)
+
+      }
+
+    })
+
+    console.log(options);
+
+    console.log(this.finalArray)
+
+  }
+
+
   goBack() {
     this.clicked=false;
-    this.rowClicked = -1;
+    // this.rowClicked = -1;
     if (this.i > 0) {
       this.i--;
       this.questions.questions[this.i] = this.questions.questions[this.i]
@@ -70,63 +138,49 @@ export class ModuleTestComponent implements OnInit {
   }
   goNext() {
     this.clicked=false;
-    this.rowClicked = -1;
+    // this.rowClicked = -1;
     if (this.i + 2 <= this.questions.totalQuestions) {
       this.i++;
       this.questions.questions[this.i] = this.questions.questions[this.i];
-      console.log(this.i);
+      // console.log(this.i);
     }
   }
 
 
   selectedChoice(i: any) {
-    // console.log(this.answersArr);
-    // this.answersArr.length=this.questions.totalQuestions;
-    // console.log(i);
-    // if(this.answersArr.includes(empty)){
-    // this.answersArr[this.i]=i;
-
-    // this.selected=!this.selected;
-    // console.log(this.selected);
-    
     this.answersArr[this.i] = i;
+    this.index = i;
+    this.qstn = this.answersArr.indexOf(i)+1;
     console.log();
-
-    // }else{
-    // this.answersArr[this.i]=i;
-    // }
-
     console.log(this.answersArr);
   }
  
  
-  changeTableRowColor(idx: any) { 
-    if(this.chosenIndex != idx){
-      this.clicked = false;
-    }
-    if(this.rowClicked === idx) this.rowClicked = -1;
-    else this.rowClicked = idx;
-    this.chosenIndex=idx;
-    this.clicked=!this.clicked;
-    if(this.clicked == false){
-      this.chosenIndex=null;
-    }
-    console.log(this.clicked);
-  }
+  // changeTableRowColor(idx: any) { 
+  //   if(this.chosenIndex != idx){
+  //     this.clicked = false;
+  //   }
+  //   if(this.rowClicked === idx) this.rowClicked = -1;
+  //   else this.rowClicked = idx;
+  //   this.chosenIndex=idx;
+  //   this.clicked=!this.clicked;
+  //   if(this.clicked == false){
+  //     this.chosenIndex=null;
+  //   }
+
+  // }
   startCountdown() {
     this.pause=false;
-    // console.log(this.remTime);
     this.counter = Number(this.remTime) ;
     if(this.pause==false){
     this.interval = setInterval(() => {
-        this.counter--;
-        // console.log(this.counter);
-        
-    if (this.counter < 0 ) {
-      clearInterval(this.interval);
+        this.counter--;     
+    if (this.counter <= 0 ) {
       this.submitTest();
-    //  alert('Time is up!');
-      this.router.navigate(['/congratulations'])
+      clearInterval(this.interval);
+      
+     
+
     }
     }, 1000);
     }
@@ -153,23 +207,21 @@ export class ModuleTestComponent implements OnInit {
       this.service.submit().subscribe({
         next:(data)=>{
           // console.log(data);
+           this.router.navigate(['/congratulations'])
           let show=JSON.parse(data)
-        alert(show.message);
+        // alert(show.message);
         if(show.message=="You have already passed this test"){
           this.router.navigate(['/congratulations']);
         }else{
-          alert('Test failed')
+          // alert('Test failed')
           this.router.navigate(['/courseOverview']);
         }
         },
-        error:(e)=>{
-          // alert(e);
-          
+        error:(e)=>{      
         }
         
       })
-      // this.dialogRef.close({data :  'done'})
-      
+   
     } 
 
 }

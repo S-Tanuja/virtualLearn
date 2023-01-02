@@ -7,28 +7,39 @@
     </div>
 
    <div class="courseDisplay">
-     <div class="positioning"  *ngFor="let course of ongoing;index as i">
+     <div class="positioning"  *ngFor="let course of courses;index as i">
         <div class="bgImage">
-            <img src="{{course.url}}" id="bgImage"alt="">
+            <img src="{{course.url}}" id="bgImage"alt=""  *ngIf="highlightOngoing">
+            <img src="{{course.image}}" id="bgImage"alt=""  *ngIf="highlightCompleted">
         </div>
         <div class="courses">
             <div class="courseInline">
                 <div>
-                    <p class="courseStatus">Ongoing</p>
+                    <p class="courseStatus"  *ngIf="highlightOngoing">Ongoing</p>
+                    <p class="courseStatus" *ngIf="highlightCompleted">Completed</p>
                 </div>
+
+
+              <div class="fix">
                 <div>
-                    <p class="courseName">{{course.title}}</p>
-                    <p class="chapters">{{course.chaptersCompleted}}/{{course.totalChapters}} &nbsp;chapters</p>
+                    <p class="courseName"  *ngIf="highlightOngoing">{{course.title}}</p>
+                    <p class="courseName" *ngIf="highlightCompleted">{{course.title}}</p>
+
+                    <p class="chapters"  *ngIf="highlightOngoing">{{course.chaptersCompleted}}/{{course.totalChapters}} &nbsp;chapters</p>
+                    <p class="chapters" *ngIf="highlightCompleted">{{course.approvalRate}} % Approval Rate&nbsp;chapters</p>
+
                 <div class="continue">
-                    <button (click)="openCourse(course.courseId)">Continue</button>
+                    <button (click)="openCourse(course.courseId,course.title)"  *ngIf="highlightOngoing">Continue</button>
+                    <button (click)="openCourse(course.courseId,course.title)" *ngIf="highlightCompleted">Continue</button>
                 </div>
+              </div>
                 </div>
             </div>
         
         </div>
     
     </div>
-   <div class="positioning"  *ngFor="let course of completed;index as i">
+   <!-- <div class="positioning"  *ngFor="let course of courses;index as i">
         <div class="bgImage">
             <img src="course.coursePhoto" id="bgImage"alt="">
         </div>
@@ -40,15 +51,13 @@
                 <div>
                     <p class="courseName">{{course.courseName}}</p>
                     <p class="chapters">{{course.completedChapter}}/{{course.totalChapter}} &nbsp;chapters</p>
-                <!-- <div class="continue">
-                    <button (click)="openCourse(course.courseId)">Continue</button>
-                </div> -->
+                
                 </div>
             </div>
         
         </div>
     
-    </div>
+    </div> -->
 
    <!--  <div class="positioning">
         <div class="bgImage">

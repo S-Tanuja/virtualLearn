@@ -20,6 +20,7 @@ export class ProgressScreenComponent implements OnInit {
     this.testResult();
   }
   solutions() {
+    sessionStorage.removeItem('index');
     this.dialog.open(QuizResultComponent, { height: '100%', width: '50%',panelClass: 'custom'})
   }
   testResult(){
@@ -40,7 +41,8 @@ export class ProgressScreenComponent implements OnInit {
       }
     })
   }
-  eachQues(){
-    
+  particularQ(index:any){
+    sessionStorage.setItem('index', index);
+    this.dialog.open(QuizResultComponent,{height:'100%',width:'50%',panelClass:'custom'})
   }
 }

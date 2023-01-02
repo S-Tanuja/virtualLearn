@@ -23,11 +23,9 @@ export class ConfirmSubmitComponent implements OnInit {
  submitTest(){
   this.chose=true;
   this.notchose=false
-  // clearInterval(this.interval);
   let answers=JSON.parse(sessionStorage.getItem('answers')as any);
     this.service.submit().subscribe({
       next:(data)=>{
-        // console.log(data);
         let show=JSON.parse(data)
       alert(show.message);
       if(show.message=="You have already passed this test"){
@@ -38,8 +36,6 @@ export class ConfirmSubmitComponent implements OnInit {
       }
       },
       error:(e)=>{
-        // alert(e);
-        
       }
       
     })

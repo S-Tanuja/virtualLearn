@@ -26,6 +26,11 @@ import { AuthserviceInterceptor } from './token.interceptor';
 import { ConfirmSubmitComponent } from './confirm-submit/confirm-submit.component';
 import { TimePipe } from './time.pipe';
 import {MatDialogModule} from '@angular/material/dialog';
+import {VgCoreModule} from '@videogular/ngx-videogular/core';
+import {VgControlsModule} from '@videogular/ngx-videogular/controls';
+import {VgOverlayPlayModule} from '@videogular/ngx-videogular/overlay-play';
+import {VgBufferingModule} from '@videogular/ngx-videogular/buffering';
+import { ContinueWatchingComponent } from './continue-watching/continue-watching.component';
 
 
 @NgModule({
@@ -46,7 +51,8 @@ import {MatDialogModule} from '@angular/material/dialog';
     CloseTestComponent,
     LoginComponent,
     ConfirmSubmitComponent,
-    TimePipe
+    TimePipe,
+    ContinueWatchingComponent
   ],
   imports: [
     BrowserModule,
@@ -54,7 +60,11 @@ import {MatDialogModule} from '@angular/material/dialog';
     BrowserAnimationsModule,
     MaterialModule,
     HttpClientModule,
-    MatDialogModule
+    MatDialogModule,
+    VgCoreModule,
+    VgControlsModule,
+    VgOverlayPlayModule,
+    VgBufferingModule
   ],
   providers: [
 
