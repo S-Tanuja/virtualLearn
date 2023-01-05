@@ -1,5 +1,5 @@
 <app-header></app-header>
-<p class="myCourse">My Course <span > > {{showdiv1}}</span> <span  *ngIf="show"> > {{title}}</span></p>
+<p class="myCourse" routerLink="/myCourse">My Course <span > > {{showdiv1}}</span> <span  *ngIf="show"> > {{title}}</span></p>
 <div class="main">
     <div class="submain">
         <div>
@@ -174,7 +174,7 @@
                     </div>
                 </div>
                 <div class="instInfo">
-                    {{courseOvDetails.instructor.description}}...<span class="showmore">SHOW MORE</span>
+                    {{courseOvDetails.instructor.description}}
                 </div>
             </div>
 
@@ -192,6 +192,7 @@
                             <mat-icon (click)="displayDropdown(chapter)" *ngIf="chapter.dropdown">remove</mat-icon>
                         </div>
                     </div>
+                    <!-- {{videoCompleted()}} -->
                     <div *ngIf="chapter.dropdown==true">
                         <div class="video" *ngFor="let lesson of chapter.lessons;index as i">
                             <div class="chk" *ngIf="lesson.serialNumberOfLesson<ongoingSerNum">
@@ -218,7 +219,7 @@
                         </div>
 
                         <div class="video" *ngIf="chapter.test!=null"   >
-
+                                <!-- {{videoCompleted()}} -->
                             <!-- <div class="chk">
                                 <mat-icon>check_circle</mat-icon>
                             </div> -->
@@ -226,7 +227,7 @@
                                 <mat-icon>radio_button_checked</mat-icon>
                             </div>
 
-                            <div class="videoNumber" (click)="testStatus1(chapter.test._id)">
+                            <div class="videoNumber" (click)="testStatus1(chapter.test._id,chapter)">
                                 <img src="/assets/Shape (5).png" alt="">
                             </div>
                             <div class="videoInfo" >

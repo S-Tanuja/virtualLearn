@@ -41,6 +41,7 @@ openCourse(){
 }
 courseChapters(){
   this.getCourseId();
+  console.log(this.courseId);
   let body={
     "view":'chapters',
     "courseId":this.courseId

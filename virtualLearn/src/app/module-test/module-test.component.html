@@ -7,7 +7,7 @@
         </div>
     </div>
     <div class="submain1">
-        <div class="questionsComplete">Question {{i+1}} of {{questions.totalQuestions}}</div>
+        <div class="questionsComplete">Question {{j+1}} of {{questions.totalQuestions}}</div>
         <div class="remainingTime">
             <div class="clock">
                 <mat-icon>alarm</mat-icon>
@@ -16,7 +16,7 @@
                 remaining</div>
         </div>
     </div>
-    <p class="question">{{questions.questions[i]}}</p>
+    <p class="question">{{questions.questions[j]}}</p>
     <!-- <div class="choice">
         <div class="choiceIcon">
             <mat-icon>radio_button_unchecked </mat-icon>
@@ -33,17 +33,17 @@
 
     </div> -->
 
-    <div *ngFor="let choice of questions.options[i];index as i">
+    <div *ngFor="let choice of questions.options[j];index as i">
         <div (click)="selectedChoice(i)" class="choice"
-             [style.background-color]="rowClicked == i ? '#EC5D52' : 'transparent'"
-             [style.color]="rowClicked == i ? 'white' : 'black'" 
-             >
+             [style.background-color]="rowClicked == i || answersArr[j] == i ? '#EC5D52' : 'transparent'"
+             [style.color]="rowClicked == i || answersArr[j] == i ? 'white' : 'black'" 
+             (click)="changeTableRowColor(i)">
              
-            <div class="choiceIcon" *ngIf="chosenIndex!=i || clicked==false ">
+            <div class="choiceIcon" *ngIf="(chosenIndex!=i || clicked==false) && answersArr[j] != i">
 
                 <mat-icon>radio_button_unchecked </mat-icon>
             </div>
-            <div class="selectedchoiceIcon" *ngIf="chosenIndex==i && clicked==true">
+            <div class="selectedchoiceIcon" *ngIf="(chosenIndex==i && clicked==true) || answersArr[j] == i">
                 <mat-icon>check_circle</mat-icon>
             </div>
             <div>
@@ -66,12 +66,12 @@
             <p>{{chapterName}}</p>
         </div>
         <div class="backIcon" (click)="goBack()">
-            <mat-icon *ngIf="this.i">arrow_back</mat-icon>
+            <mat-icon *ngIf="this.j">arrow_back</mat-icon>
         </div>
         <div class="backIcon" (click)="goNext()">
-            <mat-icon *ngIf="!(this.i+1==questions.totalQuestions)">arrow_forward</mat-icon>
+            <mat-icon *ngIf="!(this.j+1==questions.totalQuestions)">arrow_forward</mat-icon>
         </div>
-        <div class="submitbtn" (click)="submit()"><button *ngIf="this.i+1==questions.totalQuestions">Submit</button>
+        <div class="submitbtn" (click)="submit()"><button *ngIf="this.j+1==questions.totalQuestions">Submit</button>
         </div>
     </div>
 

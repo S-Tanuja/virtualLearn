@@ -1,6 +1,7 @@
 import { JsonPipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { iif } from 'rxjs';
 import { LoginServiceService } from '../login-service.service';
 
 @Component({
@@ -16,6 +17,8 @@ export class MyCourseHomeComponent implements OnInit {
 active="active";
   ngOnInit(): void {
     this.ongoingCourse();
+    sessionStorage.removeItem('cl');
+    sessionStorage.removeItem('oc');
     sessionStorage.setItem('div1','Ongoing')
     
   }
@@ -55,6 +58,11 @@ active="active";
     console.log(data);
     sessionStorage.setItem('courseId',data);
     sessionStorage.setItem('title',data1);
+   console.log( sessionStorage.getItem('courseId'))
+   console.log(data)
+  //  if(data!=sessionStorage.getItem('courseId')){
+  //   sessionStorage.removeItem('cl');
+  //  }
 
     this.service.openCourse().subscribe(data1=>{
       console.log(data1);

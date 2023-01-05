@@ -11,6 +11,7 @@ import { ProgressScreenComponent } from './progress-screen/progress-screen.compo
 
 const routes: Routes = [
   {path:'',component:LoginComponent},
+  {path:'login',component:LoginComponent},
   {path:'courseOverview',component:CourseOverviewComponent},
   {path:'courseChapters',component:CourseChaptersComponent},
   {path:'courseCompleted',component:CourseCompletedComponent},

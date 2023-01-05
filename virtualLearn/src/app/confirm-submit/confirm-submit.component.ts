@@ -31,7 +31,6 @@ export class ConfirmSubmitComponent implements OnInit {
       if(show.message=="You have already passed this test"){
         this.router.navigate(['/congratulations']);
       }else{
-        alert('Test failed')
         this.router.navigate(['/courseOverview']);
       }
       },

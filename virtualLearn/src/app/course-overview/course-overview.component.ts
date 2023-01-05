@@ -55,8 +55,26 @@ export class CourseOverviewComponent implements OnInit {
 
   ngOnInit(): void {
     
+    let res = sessionStorage.getItem('oc');
+    console.log(res);
+    
+    
+    // if(res == 'overview')
+    // this.showoc = 'overview';
+
+    // else if(res == 'chapters')
+    // this.showoc = 'chapters';
     this.courseOverview();
-    this.courseChapters();
+
+    if(res == 'overview'){
+    this.courseOverview();
+    } 
+
+    else if(res == 'chapters'){
+      // sessionStorage.removeItem('cl');
+      this.courseChapters();
+    }
+
     this.videoCompleted();
     this.dd=sessionStorage.getItem('dd')
     // this.showoc = sessionStorage.getItem('oc');
@@ -66,8 +84,8 @@ export class CourseOverviewComponent implements OnInit {
     // this.completedLessonVideo();
   }
   courseOverview() {
-    sessionStorage.setItem('ov','overview');
-    this.showoc = sessionStorage.getItem('ov');
+    sessionStorage.setItem('oc',('overview'));
+    this.showoc = sessionStorage.getItem('oc');
 
     this.show=false;
     this.content1 = true;
@@ -88,7 +106,7 @@ export class CourseOverviewComponent implements OnInit {
     })
   }
   courseChapters() {
-    sessionStorage.setItem('oc','chapters');
+    sessionStorage.setItem('oc',('chapters'));
     this.showoc = sessionStorage.getItem('oc');
     
     this.show=true;
@@ -102,7 +120,20 @@ export class CourseOverviewComponent implements OnInit {
       this.courseChap = JSON.parse(data);
       console.log(this.courseChap);
       this.chaptersList = this.courseChap.listOfChapters.totalChapters[0].chapters;
-      this.chaptersList.dropdown =false;
+      console.log(this.chaptersList);
+
+      if(sessionStorage.getItem('cl')){
+        this.chaptersList = JSON.parse(sessionStorage.getItem('cl') as any);
+      }
+      else{
+        for(let ch of this.chaptersList){
+          ch.dropdown = false;
+        }
+      }
+    
+      console.log(this.chaptersList);
+
+      // this.chaptersList.dropdown =false;
       sessionStorage.setItem('totalChap', JSON.stringify(this.courseChap.listOfChapters.courseContent.totalChapters));
       sessionStorage.setItem('totalLessons', JSON.stringify(this.courseChap.listOfChapters.courseContent.totalLessons));
       // alert(this.courseChap.listOfChapters.totalChapters[0]._id)
@@ -118,9 +149,12 @@ export class CourseOverviewComponent implements OnInit {
   }
 
   displayDropdown(chapterDesc: any) {
-    chapterDesc.dropdown = !chapterDesc.dropdown;
-    sessionStorage.setItem('dd',chapterDesc.dropdown);
-    console.log(chapterDesc);
+
+    // chapterDesc.dropdown = !chapterDesc.dropdown;
+    // sessionStorage.setItem('dd',chapterDesc.dropdown);
+  
+    
+    // console.log(chapterDesc);
     sessionStorage.setItem('chapNo', JSON.stringify(chapterDesc.chapterNumber));
     sessionStorage.setItem('chapName', JSON.stringify(chapterDesc.chapterTitle));
     sessionStorage.setItem('chapId', JSON.stringify(this.courseChap.listOfChapters.totalChapters[0]._id));
@@ -129,19 +163,27 @@ export class CourseOverviewComponent implements OnInit {
 
     //  console.log(chapterDesc.chapterNumber);
 
-    let allData = JSON.parse(sessionStorage.getItem('getChaptersList') as any);
-    let object = allData.find((eachObject: any) => {
+    // let allData = JSON.parse(sessionStorage.getItem('getChaptersList') as any);
+    // let object = allData?.find((eachObject: any) => {
 
 
-      let chapId = eachObject.chapterNumber == chapterDesc.chapterNumber;
+    //   let chapId = eachObject.chapterNumber == chapterDesc.chapterNumber;
 
-      return chapId;
-    });
-    if (object != undefined) {
-      let index = allData.indexOf(object);
-      allData[index] = chapterDesc;
+    //   return chapId;
+    // });
+    // if (object != undefined) {
+    //   let index = allData.indexOf(object);
+    //   allData[index] = chapterDesc;
     
-    }
+    // }
+
+    let index1 = this.chaptersList.indexOf(chapterDesc);
+    if(this.chaptersList[index1].dropdown == false)
+    this.chaptersList[index1].dropdown = true; 
+    else 
+    this.chaptersList[index1].dropdown = false;
+    sessionStorage.setItem('cl',JSON.stringify(this.chaptersList));
+    console.log(this.chaptersList);
    
   }
 
@@ -162,7 +204,10 @@ export class CourseOverviewComponent implements OnInit {
     sessionStorage.setItem('lessdur', (lessonDur))
     this.videoLink = lessonUrl;
   }
-  testStatus1(testId1: any) {
+  testStatus1(testId1: any,chapter:any) {
+    let koneNumber = chapter.lessons[chapter.lessons.length-1].serialNumberOfLesson;
+    console.log(koneNumber);
+    
     sessionStorage.setItem('testId', testId1);
     this.service.testStatus().subscribe({
 
@@ -174,11 +219,13 @@ export class CourseOverviewComponent implements OnInit {
 
       }, complete: () => {
         console.log(this.testMessage);
-        if (this.testMessage == "true") {
+        if (this.testMessage == "true" ) {
           if (confirm("You have already passed this test.\n View Result?"))
             this.router.navigate(['progressScreen']);
-        } else {
+        } else if(koneNumber+1 == this.ongoingSerNum ) {
           this.router.navigate(['moduleTests']);
+        }else if(koneNumber+1 != this.ongoingSerNum){
+          alert('You cannot attend the test');
         }
       }
     })
